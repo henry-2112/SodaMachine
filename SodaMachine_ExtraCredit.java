@@ -3,7 +3,7 @@
  * SodaMachine will make a SodaMachine object, with prices that depend on
  * temperature.
  *
- * @author (Henry St. Pierre)
+ * @author (Henry)
  * @version (10/11/22)
  */
 
