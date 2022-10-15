@@ -2,7 +2,7 @@
 /**
  * Write a description of class sodaTester_ExtraCredit here.
  *
- * @author (Henry St. Pierre)
+ * @author (Henry)
  * @version (10/11/22)
  */
 public class sodaTester_ExtraCredit
