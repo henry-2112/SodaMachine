@@ -1,6 +1,6 @@
 
 /**
- * SodaMachine will make a SodaMachine object, with prices that depend on
+ * SodaMachine_ExtraCredit will make a SodaMachine_ExtraCredit object, with prices that depend on
  * temperature.
  *
  * @author (Henry)
@@ -8,25 +8,31 @@
  */
 
 import java.util.Scanner;
+import java.lang.Math;
+import java.text.NumberFormat;
 //import for currency (chapter 4)
-public class SodaMachine
+public class SodaMachine_ExtraCredit
 {
-    private double temp;
-    private int roundedTemp;
-    private double price;
-    private double money;
-    private double change;
+    double temp;
+    double price;
+    double money;
+    double change;
+    int quarters;
+    int dimes;
+    int nickles;
+    int pennies;
+    String quarterSingle;
+    String dimeSingle;
+    String nickleSingle;
+    String pennySingle;
+    String outputMsg;
     Scanner scanTemp = new Scanner(System.in);
     Scanner scanMoney = new Scanner(System.in);
+    private NumberFormat fmt = NumberFormat.getCurrencyInstance();
     public void getTemp()
     {
-        System.out.println("Enter the temperature outside:");
-        System.out.println(" ");
-        temp = scanTemp.nextDouble();
-        System.out.println(" ");
-        temp = (temp + .5);
-        roundedTemp = (int)(temp);
-        System.out.println("Temperature is: " + roundedTemp);
+        temp = (int)(Math.random()*100);
+        System.out.println("The temperature outside is " + temp + " degrees:");
         System.out.println(" ");
     }
 
@@ -78,7 +84,7 @@ public class SodaMachine
         {
             price = .50;
         }
-        System.out.println("At the temperature " + roundedTemp + " degrees the price is $" + price);
+        System.out.println("At the temperature " + temp + " degrees the price is " + fmt.format(price));
         System.out.println(" ");
     }
 
@@ -97,15 +103,63 @@ public class SodaMachine
         {
             return;
         }
-        else if (change > 100.0)
+        change = (int)(change*100);
+        quarters = (int)(change/25);
+        change = (int)(change-(quarters*25));
+        dimes = (int)(change/10);
+        change = (int)(change-(dimes*10));
+        nickles = (int)(change/5);
+        pennies = (int)(change-(nickles*5));
+        if (quarters == 1)
         {
-            System.out.println("We don't have enough money to give you.");
-            System.out.println(" ");
-            System.out.print("Thank you for choosing APCS Soda Company®. \n" +
-                "See you next time!");
-            return;
+            quarterSingle = (quarters + " quarter\n");
         }
-        System.out.println("Your change is $" + change + ".");
+        else if (quarters == 0)
+        {
+            quarterSingle = (" ");
+        }
+        else 
+        {
+            quarterSingle = (quarters + " quarters\n");
+        }
+        if (dimes == 1)
+        {
+            dimeSingle = (dimes + " dime\n");
+        }
+        else if (dimes == 0)
+        {
+            dimeSingle = (" ");
+        }
+        else
+        {
+            dimeSingle = (dimes + " dimes\n");
+        }
+        if (nickles == 1)
+        {
+            nickleSingle = (nickles + " nickle\n");
+        }
+        else if (nickles == 0)
+        {
+            nickleSingle = (" ");
+        }
+        else
+        {
+            nickleSingle = (nickles + " nickles\n");
+        }
+        if (pennies == 1)
+        {
+            pennySingle = (pennies + " penny\n");
+        }
+        else if (pennies == 0)
+        {
+            pennySingle = (" ");
+        }
+        else
+        {
+            pennySingle = (pennies + " pennies\n");
+        }
+        outputMsg = ("Your change is:\n" + quarterSingle + dimeSingle + nickleSingle + pennySingle);
+        System.out.println(outputMsg);
         System.out.println(" ");
         System.out.print("Thank you for choosing APCS Soda Company®. \n" +
             "See you next time!");
